@@ -5,7 +5,7 @@ from utils.s3_utils import connect_to_s3, upload_file_to_s3
 
 
 def collect_files_to_upload():
-    """Gets the files that need to be uploaded to S3.
+    """Gets the files that need to be uploaded to S3. The files will be placed and renamed manually by me.
 
     Returns a dict of type Str:List where the key is the name of a financial institution,
     and the value is a list of file names that need to be uploaded.
@@ -24,8 +24,8 @@ def upload_files(client, files_dict):
     """Handles uploading of all files that were found in the local directory. Adds a prefix of `input`
 
     Args:
-        client (_type_): the boto3 client already authenticated and connected to S3
-        files_dict (_type_): the output of `collect_files_to_upload`
+        client (s3.Client): the boto3 client already authenticated and connected to S3
+        files_dict (Dict[Str, List]): the output of `collect_files_to_upload`
     """
     for institution in files_dict.keys():
         files = files_dict[institution]
